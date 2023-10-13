@@ -1,0 +1,17 @@
+[project]
+name = "jupyterlab-boilerplate"
+version = "0.1.0"
+description = "Boilerplate for dockerize jupyterlab"
+authors = ["taeyoon kim <partrita@gmail.com>"]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[tasks]
+test_docker_install = "docker -v || (echo No docker found, please install manually as it is not available on conda. && exit)"
+build = {cmd = "docker build ../../. --no-cache -f Dockerfile --tag pixi", depends_on = ["test_docker_install"]}
+start = {cmd = "docker run -it pixi", depends_on = ["build"]}
+
+[dependencies]
+jupyterlab = "4.0.7.*"
+jupyter-lsp-python = "2.2.0.*"
+python-lsp-server = "1.8.2.*"
