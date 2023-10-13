@@ -2,12 +2,8 @@ name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
-  check-bats-version:
+  pixi-action:
     runs-on: ubuntu-latest
     steps:
       - uses: prefix-dev/setup-pixi@v0.2.0
-        with:
-          cache: true
       - run: pixi run cowpy "Thanks for using pixi"
-
-
